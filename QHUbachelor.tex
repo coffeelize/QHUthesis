@@ -1,0 +1,61 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8
+\documentclass{QHUthesis}
+\graphicspath{{figures/}}
+\begin{document}
+	
+%=====封皮页需要自己填写的内容
+\title{{青海大学青海大学某某某某某某某某某某某某某某设计}}%中文标题
+\entitle{{QHU QHU QHU Design of bla bla bla bla bla bla bla bla bla bla}}%英文标题
+\author{WuZhiPeng}%论文作者
+\major{机械设计制造及其自动化}%专业、年级(年级前有空格)
+\advisor{某某某}%指导老师
+\college{机械工程学院}%学院
+\serialnumber{17000000000}%学号
+\cptdate{2021年5月20日}
+\stryear{2017级}
+%%======生成封面（几乎不需要更改）
+\maketitle
+\newblankpage%插入一个新的空白页
+\include{chapter/statement}
+\newblankpage%插入一个新的空白页
+\frontmatter%关闭章节序号，页码使用罗马数字;
+%======生成目录
+\tableofcontents
+\ifthenelse{\boolean{PicAndTabIndex}}
+{
+	\renewcommand{\listfigurename}{插图索引}
+	\renewcommand{\listtablename}{附表索引}
+	\setcounter{lofdepth}{1}
+	\newcommand{\loflabel}{图~}
+	\renewcommand{\numberline}[1]{\songti\zihao{4}\loflabel~#1\hspace*{\baselineskip}}
+	\addcontentsline{toc}{chapter}{插图索引}
+	\listoffigures
+	\newcommand{\lotlabel}{表~}
+	\renewcommand{\numberline}[1]{\songti\zihao{4}\lotlabel~#1\hspace*{\baselineskip}}
+	\addcontentsline{toc}{chapter}{附表索引}
+	\listoftables
+}
+{
+}
+%======文章主体
+\mainmatter%开启章节序号计数，重置页码，页码使用阿拉伯数字;
+\include{chapter/abstract}%如果中英文摘要和目录一起罗马数字编页码，请把部分移到\mainmatter前
+\songti\zihao{-4} %正文字体为小四号宋体
+\include{chapter/chapter1} %各个章节内容单独分开撰写，方便编译和组织;
+\include{chapter/chapter2}
+\include{chapter/chapter3}
+\include{chapter/chapter4}
+\include{chapter/chapter5}
+\include{chapter/conclusion}
+
+%=======论文后部
+\backmatter
+%=======参考文献
+\bibdatabase{references/reference}%参考文献数据库
+\printbib
+\include{chapter/thanks}%致谢
+\makeappedixfigtabnum%重新计算附图和表的标题号和计数号
+\include{chapter/appendix}%附录
+
+\end{document}

@@ -1,0 +1,179 @@
+% !TEX encoding = UTF-8
+\chapter{模板使用}
+\section{模板文件结构\label{sec:files}}
+整个模板根目录的文件列表如下：
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+QHUthesis.cls & ---QHUthesis宏包 & \textcolor{red}{{*}}\\
+\hline
+QHU.cfg & ---QHU宏包配置文件 & \textcolor{red}{{*}}\\
+\hline
+QHUbib.bst & ---引文样式文件 & \textcolor{red}{{*}}\\
+\hline
+references/reference.bib & ---bib数据库 & \textcolor{red}{{*}}\\
+\hline
+figures/QHUbmp.bmp & ---青海大学校名标准字 & \textcolor{red}{{*}}\\
+\hline
+QHUbachelor.tex & ---\TeX{}样例文件 &\textcolor{red}{{*}}\\
+\hline
+\end{tabular}
+\end{center}
+注： \textcolor{red}{{*}} 表示\LaTeX{}模板必须的文件。
+\section{示例}
+对于论文中最常使用的一些功能在本节中给出示例。
+\subsection{公式}
+\begin{equation}
+\hat{H}=\frac{\epsilon}{2}\hat{\sigma}_{z}-\frac{\Delta}{2}\hat{\sigma}_{x}+\sum_{k}\omega_{k}\hat{b}_{k}^{\dagger}\hat{b}_{k}+\sum_{k}\frac{g_{k}}{2}\hat{\sigma}_{z}(\hat{b}_{k}+\hat{b}_{k}^{\dagger})\label{eq:sbm}
+\end{equation}
+根据公式\ref{eq:sbm}可知，这个是对公示的引用。
+\begin{align}\label{eqn3:9}
+\int_{-\infty}^{+\infty}S(\tau,f)\,\mathrm{d}\tau&=\int_{-\infty}^{+\infty}x(t)\left\{\int_{-\infty}^{+\infty}\frac{|f|}{\sqrt{2\pi}}e^{\frac{-|f|^2(\tau-t)^2}{2}}\,\mathrm{d}\tau\right\}e^{-j2\pi ft}\,\mathrm{d}t\notag\\
+&=\int_{-\infty}^{+\infty}x(t)e^{-j2\pi ft}\left\{\int_{-\infty}^{+\infty}\frac{1}{\sqrt{\pi}}e^{-\left[\frac{|f|(\tau-t)}{\sqrt{2}}\right]^2}\,\mathrm{d}\frac{|f|(\tau-t)}{\sqrt{2}}\right\}\,\mathrm{d}t
+\end{align}
+令$\theta=\frac{|f|(\tau-t)}{\sqrt{2}}$，则式\eqref{eqn3:9}可改写为
+\begin{align}\label{eqn3:10}
+\int_{-\infty}^{+\infty}S(\tau,f)\,\mathrm{d}\tau&=\int_{-\infty}^{+\infty}x(t)e^{-j2\pi ft}\,\mathrm{d}t\frac{1}{\sqrt{\pi}}\int_{-\infty}^{+\infty}e^{-\theta^2}\,\mathrm{d}\theta\notag\\
+&=\int_{-\infty}^{+\infty}x(t)e^{-j2\pi ft}\,\mathrm{d}t\frac{2}{\sqrt{\pi}}\int_{0}^{+\infty}e^{-\theta^2}\,\mathrm{d}\theta\notag\\
+&=\int_{-\infty}^{+\infty}x(t)e^{-j2\pi ft}\,\mathrm{d}t\notag\\
+&=X(f)
+\end{align}
+\subsection{表格}
+\begin{table}[H]
+	\begin{center}
+		\caption{希腊字母表\label{tab:Greek}}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			Alpha & Beta & Gamma & Delta & Theta\\
+			\hline
+			$\alpha$ & $\beta$ & $\gamma$ & $\delta$ & $\theta$\\
+			\hline
+			$A$ & $B$ & $\Gamma$ & $\Delta$ & $\Theta$\\
+			\hline
+		\end{tabular}
+		\end{center}
+\end{table}
+这是对表\ref{tab:Greek}的引用
+
+\begin{table}[htbp]
+	\caption{不同电力系统频率测量算法时间复杂度比较}\label{table2:1}
+	\centering\zihao{5}
+	\begin{tabular}{cccc}
+		\toprule[1.5pt]
+		算法 &  加法 & 乘法 & 时间复杂度 \\
+		\midrule[1pt]
+		TQDS       & $QN^2+QN/2+Q+1$        &$QN^2$                      & $O(N^2)$     \\
+		WIFFT         & $(QN+1)\log_2(QN+1)$ & $(QN+1)*(1+\log_2(QN+1))$ &$O(N\log_2N)$\\
+		本章算法 &$3(QN+1)\log_2(QN+1)$    & $(QN+1)(1+3\log_2(QN+1))$          & $O(N\log_2N)$\\
+		\bottomrule[1.5pt]
+	\end{tabular}
+	\vspace{\baselineskip}
+\end{table}
+
+本章对时域准同步算法（Time Domain Quasi-synchronous，TQDS）、加窗插值~FFT~算法（Windowed Interpolated FFT，WIFFT）以及本章所提算法的时间复杂度进行分析。因~TQDS~需要进行迭代运算，故设总采样点数为~$QN+1$，其中~$Q$~为迭代次数，$N$~为单次迭代所需的数据点长度。TQDS~共需要~$QN^2$~次加法和~$QN^2+QN/2+Q+1$~次乘法，因此~TQDS~的时间复杂度为~$O(N^2)$。WIFFT~的计算量主要为~FFT~运算，共需进行~$(QN+1)\log_2(QN+1)$~次加法和~$(QN+1)(1+\log_2(QN+1))$~次乘法，因此~WIFFT~的时间复杂度为~$O(N\log_2N)$。对于本章所提出的算法，由于线性卷积运算采用快速卷积来进行计算，因此共需进行~$3(QN+1)\log_2(QN+1)$~加法和~$(QN+1)(1+3\log_2(QN+1))$~次乘法，算法时间复杂度为~$O(N\log_2N)$。表~\ref{table2:1}~对三种频率测量算法的时间复杂度进行了对比。由表~\ref{table2:1}~可见，TQDS~的时间复杂度比其它两种算法要高，本章算法和~WIFFT~时间复杂度相当，有利于算法的实时实现。
+\subsection{图形}
+这个示例为插入图片：
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.618\textwidth]{figure.jpg}%图片名称，放在/figures目录下
+	\caption{图片插入\label{fig:fig}}
+\end{figure}
+具体代码：
+\begin{verbatim}%抄写环境
+\begin{figure}[H]
+\centering
+%图片放在/figures目录下
+\includegraphics[width=0.618\textwidth]{figure.jpg}
+\caption{图片插入\label{fig:fig}}
+\end{figure}
+\end{verbatim}
+\begin{figure}[H]
+\centering
+		\includegraphics[width=0.618\textwidth]{QHU.bmp}
+\caption{青海大学\label{fig:qhu}}
+\end{figure}
+对于图\ref{fig:fig}和图\ref{fig:qhu}的引用。
+\subsection{引用}
+\subsubsection{交叉引用}
+对所有需要引用的公式、表格、图形，执行插入--标签后，即可使用插入-- 交叉引用自动产生引用。
+\begin{itemize}
+\item 哈密顿量见方程~\eqref{eq:sbm}。
+\item 希腊字母表见表~\ref{tab:Greek}。引用格式与方程引用格式不同
+\item 校名标准字如图~\ref{fig:qhu}。 引用格式与方程引用格式不同
+\end{itemize}
+具体见代码：
+\begin{verbatim}
+\begin{itemize}
+\item 哈密顿量见方程~\eqref{eq:sbm}。
+\item 希腊字母表见表~\ref{tab:Greek}。引用格式与方程引用格式不同
+\item 校名标准字如图~\ref{fig:qhu}。 引用格式与方程引用格式不同
+\end{itemize}
+\end{verbatim}
+\subsubsection{文献引用}
+将引文的bib数据库(默认文件名为reference.bib)放入模板根目录下的references文件夹，即可通过插入--文献引用自动产生引文。
+\begin{itemize}
+\item Journal：An article \cite{ELIDRISSI94,MELLINGER96,SHELL02,cnarticle}。
+\item Book：An book \cite{IEEE-1363,tex,companion}。
+\item Conference：A conference \cite{kocher99,DPMG,cnproceed}。
+\item Manual:A manual\cite{NPB2}.
+\item MasterThesis:\cite{zhubajie,metamori2004,shaheshang,FistSystem01}.
+\end{itemize}
+\subsection{伪代码实现}
+\begin{algorithm}
+\caption{放进冰箱的大象}\label{算法实例}
+\begin{algorithmic}
+	\REQUIRE 有一只大象
+	\ENSURE 放进冰箱里
+	\FOR {没有剩余的大象}
+	\IF {大象比冰箱大}
+	\STATE 把大象分割
+	\ENDIF
+	\ENDFOR
+	\STATE 第一步
+	\STATE 第二步
+	\STATE 第三步
+\end{algorithmic}
+AAA\end{algorithm}
+\subsection{代码展示}
+可以把你的程序添加到附录里，展示自己的工作。
+\begin{lstlisting}[language={[ANSI]C}, numbers=left]
+#include <stdio.h>
+int main(int argc, char ** argv)
+{
+/*打印Hello,world*/
+printf("Hello, world!\n");
+
+return 0;
+}
+\end{lstlisting}
+\section{依赖}
+QHUthesis依赖于以下宏包，这些宏包在常见的\LaTeX{}发行版中都包括，在安装使用之前，请确定你的\TeX{}发行版中都已正常安装这些宏包
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+		\hline
+		{footmisc} &  {amsmath} &  {amsfonts} &  {amssymb} \\
+		
+		{graphicx} &  {svgnames} &  {xcolor} &  {mathptmx} \\
+		
+		{float} &  {fontenc} &  {fancyhdr} &  {lastpage} \\
+		
+		{etoolbox} &  {fancy} &  {caption} &  {array} \\
+		
+		{makecell} &  {forloop} &  {xstring} &  {hyperref} \\
+		
+		{tabularx} &  {enumitem} &  {ntheorem} &  {algorithm}\\
+		
+		{algorithmic} &  {bibentry} &  {xeCJK} &  {CJK} \\
+		{listings} &  {courier} &  {} &  {} \\
+		\hline
+	\end{tabular}
+\end{table}
+如果你尚未安装这些宏包，可以启动你的 \TeX{} 发行版的宏包管理器
+来安装；或者到 \url{http://www.ctan.org} 上搜索下载并安装。
+\section{基本设置}
+\begin{enumerate}
+	\item 图片搜索路径默认设置为模板根目录下的figures/。
+	\item bib数据库默认设置为模板根目录下的references/reference.bib。 其中bib文件可由任意文献库管理软件自动生成
+\end{enumerate}
+
