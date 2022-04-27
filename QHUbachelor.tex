@@ -2,7 +2,10 @@
 % !TEX encoding = UTF-8
 \documentclass{QHUthesis}
 \graphicspath{{figures/}}
+
 \begin{document}
+	\captionsetup[figure][bi-second]{name=Fig} %设置图的英文编号前缀
+	\captionsetup[table][bi-second]{name=Table} %设置表的英文编号前缀
 	
 %=====封皮页需要自己填写的内容
 \title{{青海大学青海大学某某某某某某某某某某某某某某设计}}%中文标题
@@ -21,7 +24,8 @@
 \newblankpage%插入一个新的空白页
 \frontmatter%关闭章节序号，页码使用罗马数字;
 %======生成目录
-\tableofcontents
+%\tableofcontents
+
 \ifthenelse{\boolean{PicAndTabIndex}}
 {
 	\renewcommand{\listfigurename}{插图索引}

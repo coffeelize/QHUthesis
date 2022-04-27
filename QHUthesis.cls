@@ -25,7 +25,13 @@
 %========尾注
 \RequirePackage[perpage, bottom]{footmisc}
 
-%========常用宏包
+%========常用宏包========
+%========双语标题设置
+%\RequirePackage{ctex}
+\RequirePackage{caption}
+\RequirePackage{bicaption}
+
+
 \RequirePackage{amsmath,amsfonts,amssymb}
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
@@ -52,7 +58,6 @@
 \RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
 \RequirePackage{algorithm}
 \RequirePackage{algorithmic}
-\RequirePackage{caption}
 \RequirePackage{ifthen}
 \RequirePackage{titlesec}
 %======是否需要插图和图表索引

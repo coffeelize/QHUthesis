@@ -93,6 +93,13 @@ QHUbachelor.tex & ---\TeX{}样例文件 &\textcolor{red}{{*}}\\
 \caption{青海大学\label{fig:qhu}}
 \end{figure}
 对于图\ref{fig:fig}和图\ref{fig:qhu}的引用。
+
+这个示例为插入图片添加双语题注实例：
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{青大老化院.jpg}  %图片名称，放在/figures目录下
+	\bicaption{青大老化院}{QHU's old chemical engineering institute}
+\end{figure}
 \subsection{引用}
 \subsubsection{交叉引用}
 对所有需要引用的公式、表格、图形，执行插入--标签后，即可使用插入-- 交叉引用自动产生引用。
@@ -176,4 +183,7 @@ QHUthesis依赖于以下宏包，这些宏包在常见的\LaTeX{}发行版中都
 	\item 图片搜索路径默认设置为模板根目录下的figures/。
 	\item bib数据库默认设置为模板根目录下的references/reference.bib。 其中bib文件可由任意文献库管理软件自动生成
 \end{enumerate}
+
+
+
 
