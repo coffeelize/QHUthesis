@@ -1,23 +1,18 @@
-﻿﻿﻿﻿# 青海大学本科生毕业设计LaTeX模板
+﻿﻿﻿﻿﻿# 青海大学本科生毕业设计LaTeX模板
 Any question, please feel free contact us at anytime (E-mail: 1286210324@qq.com or 878972272@qq.com)
 
 For Qinghai University undergraduate 
 
+---
 
+V1.0.1
 
-编译顺序
-
-XeLateX->BibTeX->XeLateX->XeLateX
-
----by WuZhiPeng
-
----2022/04/20
+编译顺序：XeLateX->BibTeX->XeLateX->XeLateX
 
 测试的版本是[Texlive2021]
 
----
-
 接下来的工作
+
 - [ ] 修复 tableofcontents 命令报错
 - [ ] 使用 bicaption 宏包为表格和图片添加双语标题
 - [ ] 完善诚信责任书和封面排版布局
@@ -28,13 +23,23 @@ XeLateX->BibTeX->XeLateX->XeLateX
 
 ---2022/04/20
 
+---
 
+V1.0.2
+
+添加图片表格双语题注
+
+---by WuZhiPeng
+
+---2022/04/27
 
 ----
 
+V1.0.3
+
 - [x] 修复 tableofcontents 命令报错
 - [x] 使用 bicaption 宏包为表格和图片添加双语标题
-- [ ] 完美诚信责任书和封面排版布局
+- [ ] 完善诚信责任书和封面排版布局
 - [x] 页眉页脚设置
   - [x] 中英文摘要添加页眉
   - [x] 修复目录首页显示页码，次页不显示页码问题
