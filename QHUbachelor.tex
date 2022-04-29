@@ -4,27 +4,54 @@
 \graphicspath{{figures/}}
 
 \begin{document}
+	%=====前言部分，封皮页需要自己填写的内容
+	\frontmatter
+	\title{{青海大学青海大学某某某某某某某某某某某某某某设计}}%中文标题
+	\entitle{{QHU QHU QHU Design of bla bla bla bla bla bla bla bla bla bla}}%英文标题
+	\author{WuZhiPeng}%论文作者
+	\major{机械设计制造及其自动化}%专业、年级
+	\advisor{某某某}%指导老师
+	\college{机械工程学院}%学院
+	\serialnumber{17000000000}%学号
+	\cptdate{2021年5月20日}
+	\stryear{2017级}%年级
 	\captionsetup[figure][bi-second]{name=Fig} %设置图的英文编号前缀
 	\captionsetup[table][bi-second]{name=Table} %设置表的英文编号前缀
 	
-%=====封皮页需要自己填写的内容
-\title{{青海大学青海大学某某某某某某某某某某某某某某设计}}%中文标题
-\entitle{{QHU QHU QHU Design of bla bla bla bla bla bla bla bla bla bla}}%英文标题
-\author{WuZhiPeng}%论文作者
-\major{机械设计制造及其自动化}%专业、年级(年级前有空格)
-\advisor{某某某}%指导老师
-\college{机械工程学院}%学院
-\serialnumber{17000000000}%学号
-\cptdate{2021年5月20日}
-\stryear{2017级}
-%%======生成封面（几乎不需要更改）
+%%======生成封面
 \maketitle
+\thispagestyle{empty} 
 \newblankpage%插入一个新的空白页
+%插入诚信责任书页面
 \include{chapter/statement}
+\clearpage
 \newblankpage%插入一个新的空白页
-\frontmatter%关闭章节序号，页码使用罗马数字;
+\clearpage
 %======生成目录
+
+\newpage
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+%方法1
+%\pagenumbering{gobble} %去掉页码
 %\tableofcontents
+%\clearpage %在toc之后截止的命令
+
+%方法2
+%\thispagestyle{empty} 
+%\tableofcontents
+%\thispagestyle {empty}
+
+%方法3
+%\newpage
+%\pagestyle{empty}
+%\tableofcontents
+%\newpage
+%\pagestyle{fancy}
+%\setcounter{page}{1} %new page
 
 \ifthenelse{\boolean{PicAndTabIndex}}
 {
@@ -43,21 +70,20 @@
 {
 }
 %======文章主体
-\mainmatter%开启章节序号计数，重置页码，页码使用阿拉伯数字;
-\include{chapter/abstract}%如果中英文摘要和目录一起罗马数字编页码，请把部分移到\mainmatter前
+\mainmatter %开启章节序号计数，重置页码，页码使用阿拉伯数字;
 \songti\zihao{-4} %正文字体为小四号宋体
+\include{chapter/abstract}%如果中英文摘要和目录一起罗马数字编页码，请把部分移到\mainmatter前
 \include{chapter/chapter1} %各个章节内容单独分开撰写，方便编译和组织;
 \include{chapter/chapter2}
 \include{chapter/chapter3}
 \include{chapter/chapter4}
 \include{chapter/chapter5}
-\include{chapter/conclusion}
 
-%=======论文后部
+%=======论文后部=======
 \backmatter
 %=======参考文献
 \bibdatabase{references/reference}%参考文献数据库
-\printbib
+\printbib%打印参考书目
 \include{chapter/thanks}%致谢
 \makeappedixfigtabnum%重新计算附图和表的标题号和计数号
 \include{chapter/appendix}%附录
