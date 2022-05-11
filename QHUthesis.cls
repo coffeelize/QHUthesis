@@ -17,7 +17,7 @@
 %======连续参考文献连接起来，排序文献序号（并压缩）
 \RequirePackage[numbers,sort&compress]{natbib}
 %========脚注，使用footmisc自定义脚注命令
-%\RequirePackage[perpage, bottom]{footmisc}
+\RequirePackage[perpage, bottom]{footmisc}
 
 %========常用宏包========
 %========双语标题设置
@@ -36,7 +36,7 @@
 \RequirePackage{array}
 
 %\RequirePackage{ctex}
-%========设置行距，提供\setstretch命令
+%========设置行距，提供\setstretch，\spacing命令
 \RequirePackage{setspace}
 %========代码高亮
 \RequirePackage{listings}
@@ -113,27 +113,32 @@
 %章节标题设置：  name：在章节前后插入文本；number：章节编号的数字样式
 %\CTEXsetup[name={,.},number={\arabic{chapter}}]{chapter}%改变目录标题样式
 %\CTEXsetup[name={,},number={\arabic{chapter}}]{chapter}%改变目录标题样式
-\renewcommand\cftchapdotsep{0.5}%虚线间隔
+\CTEXsetup[name={,},number={\arabic{chapter}}]{chapter}
+\renewcommand\cftchapdotsep{2}%虚线间隔
 \renewcommand{\cftdot}{$\cdot$}
-\renewcommand{\cftdotsep}{1.5}
-\renewcommand{\cftchapafterpnum}{\vspace{0pt}}%章节间隔,节前6磅
-\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
+\renewcommand{\cftdotsep}{1.5}%设置点间距
+\renewcommand{\cftchapafterpnum}{\vspace{2pt}}%设置chapter章节后间距
+\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}%设置章节标题与页码之间的导引符
 \renewcommand{\cftchapdotsep}{\cftdotsep}
-\setlength{\cftbeforesecskip}{0pt}%章节间隔,节前4磅
-\setlength{\cftbeforesubsecskip}{0pt}%章节间隔,小节节前4磅
+\setlength{\cftbeforechapskip}{0pt}%一级标题章节间隔
+\setlength{\cftbeforesecskip}{0pt}%二级标题章节间隔
+\setlength{\cftbeforesubsecskip}{0pt}%三级标题间隔
+%目录章标题字体样式
 \renewcommand\cftchapfont{\songti\zihao{4}}
 \renewcommand\cftsecfont{\songti\zihao{4}}
 \renewcommand\cftsubsecfont{\songti\zihao{4}}
 \renewcommand\cftchappagefont{\mdseries}
-\setlength\cftbeforetoctitleskip{18pt}
-\setlength\cftaftertoctitleskip{50pt}
+%设置目录深度
+\setcounter{secnumdepth}{3}
+\setlength{\parindent}{2em}
+%%调整“目录”的段前段后间距
+%\setlength\cftbeforetoctitleskip{0pt}
+%\setlength\cftaftertoctitleskip{0pt}
 %%%%%%%%%% 章节字体、字号和间距设置 %%%%%%%%%%%%%%%%%
 %=======1级标题为三号，加粗，居中，段后1行,
 %=======2级标题为四号，加粗；段前 0.5 行，段后 0.5 行
 %=======3级标题小四号
 %=======4级标题及以下同3级标题
-\setcounter{secnumdepth}{3}
-\setlength{\parindent}{2em}
 \renewcommand{\chaptername}{\prechaptername\arabic{chapter}\postchaptername}
 \titleformat{\chapter}{\centering\bfseries\zihao{3}\songti}{\chaptername}{0.5em}{} %一级标题
 \titlespacing{\chapter}{0pt}{0pt}{16pt}
@@ -160,29 +165,27 @@
 \def\QHUunderline{\@ifnextchar[\QHU@underline\underline}
 \renewcommand\maketitle{
 	%封面样式
-%	\cleardoublepage
-	%封面不设置页眉页脚	
 	\thispagestyle{empty}
 	\begin{center}
-		\includegraphics[width=10.5cm]{QHU.bmp}\\%插入青大图标logo
-		\vspace{0.75cm}%设置垂直间距
-		\vspace{0.25cm}%设置垂直间距
+%		\vspace{0.1cm}%设置垂直间距
+		\includegraphics[width=7.43cm]{QHU.bmp}\\%插入青大图标logo
+		\vspace{1.2cm}%设置垂直间距(本科生毕业设计上间距)
 		{\songti\zihao{1}\QHU@label@thesis\\}%
-		\vspace{1.25cm}
+		\vspace{2.5cm}
 		\zihao{4}
-		\vspace{0.25cm}%设置垂直间距
+		\vspace{0.25cm}%设置垂直间距(中文标题上间距)
 		{\bf\songti\zihao{3}\@title} \\[0.40cm]
 		{\fontspec{Times New Roman}\bf\zihao{3}\the\entitle} \\[0.40cm]
 		\def\tabcolsep{6pt}
 		\expandarg
 		\newcounter{title_str_number}
-		\vspace*{80pt}
+		\vspace*{72pt}
 		\begin{tabular}{rl}%标题右对齐，内容左对齐
-			{\songti \QHU@label@college} & {\QHUunderline[258pt]{\songti\zihao{4}\the\college}} \\[0.50cm]%院系
-			{\songti \QHU@label@major} & {\QHUunderline[160pt]{\songti\zihao{4}\the\major}}{\songti \QHU@label@stryear}{\QHUunderline[60pt]{\songti\zihao{4}\the\stryear}}\\[0.50cm]%专业+年级
-			{\songti \QHU@label@author} & {\QHUunderline[122pt]{\songti\zihao{4}\@author}}{\songti \QHU@label@serialnumber}{\QHUunderline[100pt]{\fontspec{Times New Roman}\zihao{3}\the\serialnumber}}\\[0.50cm]%姓名+学号
-			{\songti \QHU@label@advisor} & {\QHUunderline[258pt]{\songti\zihao{4}\the\advisor}} \\[0.50cm]%指导老师
-			{\songti \QHU@label@cptdate} & {\QHUunderline[258pt]{\songti\zihao{4}\the\cptdate}} \\[0.50cm]%完成日期
+			{\songti \QHU@label@college} & {\QHUunderline[258pt]{\songti\zihao{-3}\the\college}} \\[0.7cm]%院系
+			{\songti \QHU@label@major} & {\QHUunderline[160pt]{\songti\zihao{-3}\the\major}}{\songti \QHU@label@stryear}{\QHUunderline[60pt]{\songti\zihao{-3}\the\stryear}}\\[0.7cm]%专业+年级
+			{\songti \QHU@label@author} & {\QHUunderline[122pt]{\songti\zihao{-3}\@author}}{\songti \QHU@label@serialnumber}{\QHUunderline[100pt]{\fontspec{Times New Roman}\zihao{-3}\the\serialnumber}}\\[0.7cm]%姓名+学号
+			{\songti \QHU@label@advisor} & {\QHUunderline[258pt]{\songti\zihao{-3}\the\advisor}} \\[0.7cm]%指导老师
+			{\songti \QHU@label@cptdate} & {\QHUunderline[258pt]{\songti\zihao{-3}\the\cptdate}} \\[0.7cm]%完成日期
 		\end{tabular}
 		\par
 		\vspace{70pt}
