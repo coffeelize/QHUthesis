@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿# 青海大学本科生毕业设计LaTeX模板
+﻿﻿﻿﻿﻿﻿# 青海大学本科生毕业设计LaTeX模板
 Any question, please feel free contact us at anytime (E-mail: 1286210324@qq.com or 878972272@qq.com)
 
 For Qinghai University undergraduate 
@@ -48,3 +48,6 @@ V1.0.3
 ---by WuZhiPeng
 
 ---2022/04/29
+
+v1.0.4
+
