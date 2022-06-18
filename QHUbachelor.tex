@@ -1,11 +1,12 @@
 % !TEX TS-program = xelatex
 % !TEX encoding = UTF-8
 \documentclass{QHUthesis}
-\graphicspath{{figures/}}
+\graphicspath{{figures/}} %设置图片路径
 
 \begin{document}
-	%=====前言部分，封皮页需要自己填写的内容
+	%=====封面=====
 	\frontmatter
+	%如果title和entitle标题太长，需要使用\linebreak进行强制换行处理
 	\title{{青海大学青海大学某某某某某某某某某某某某某某设计}}%中文标题
 	\entitle{{QHU QHU QHU Design of bla bla bla bla bla bla bla bla bla bla}}%英文标题
 	\author{WuZhiPeng}%论文作者
@@ -15,14 +16,15 @@
 	\serialnumber{17000000000}%学号
 	\cptdate{2021年5月20日}
 	\stryear{2017级}%年级
+
 	\captionsetup[figure][bi-second]{name=Fig} %设置图的英文编号前缀
 	\captionsetup[table][bi-second]{name=Table} %设置表的英文编号前缀
-	
+
 %%======生成封面
 \maketitle
 \thispagestyle{empty} 
 \newblankpage%插入一个新的空白页
-%插入诚信责任书页面
+%======插入诚信责任书
 \include{chapter/statement}
 \clearpage
 \newblankpage%插入一个新的空白页
@@ -31,14 +33,6 @@
 \thispagestyle{empty} 
 \tableofcontents
 \thispagestyle {empty}
-
-%方法3
-%\newpage
-%\pagestyle{empty}
-%\tableofcontents
-%\newpage
-%\pagestyle{fancy}
-%\setcounter{page}{1} %new page
 
 \ifthenelse{\boolean{PicAndTabIndex}}
 {
@@ -56,6 +50,7 @@
 }
 {
 }
+
 %======文章主体
 \mainmatter %开启章节序号计数，重置页码，页码使用阿拉伯数字;
 \songti\zihao{-4} %正文字体为小四号宋体

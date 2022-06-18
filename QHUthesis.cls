@@ -2,15 +2,14 @@
 %	@author WuZhiPeng
 % 	@date 2022/4/19
 %   This template for QingHai university undergraduate thesis
-%
 
 %---------- cls文件声明 ----------
 \ProvidesClass{QHUthesis}[2022/4/19 v1.0.1]
-\NeedsTeXFormat{LaTeX2e}
-\AtEndOfPackage{\input{QHU.cfg}}%很关键配置文件
+\NeedsTeXFormat{LaTeX2e} %声明文档类需要依赖于Latex内核
+\AtEndOfPackage{\input{QHU.cfg}} %配置封面相关的带@符号的一些自定义命令
 
 % ---------- 调用其他文档类，ctexbook类 ----------
-\LoadClass[a4paper,UTF8,openany,oneside]{ctexbook}
+\LoadClass[a4paper,UTF8,openany,oneside]{ctexbook} %装载其他文档类文件，只允许加载一项
 
 %=======论文页边距要求：每一页的左边距为 30 mm，上、下和右边距为 25 mm
 \RequirePackage[top=3cm, bottom=2.5cm, outer=2.5cm, inner=2.5cm, headheight=1.5 cm, footskip=1.75cm, heightrounded]{geometry}
@@ -320,7 +319,6 @@
 
 %%=======参考文献
 \newtoks\bibdatabase
-\RequirePackage{hyperref}
 \newcommand{\printbib}{
 	\songti\zihao{4}
 	\bibliographystyle{QHUbib}
