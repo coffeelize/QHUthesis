@@ -16,19 +16,19 @@
 %======连续参考文献连接起来，排序文献序号（并压缩）
 \RequirePackage[numbers,sort&compress]{natbib}
 %========脚注，使用footmisc自定义脚注命令
-\RequirePackage[perpage, bottom]{footmisc}
+\RequirePackage[perpage, bottom]{footmisc} %每页的脚注单独编号，强制将页脚放置在页面的底部
 
 %========常用宏包========
 %========双语标题设置
-%\RequirePackage{ctex}
 \RequirePackage{caption}
 \RequirePackage{bicaption}
+
 %========数学公式、数学字体，数学符号
 \RequirePackage{amsmath,amsfonts,amssymb}
 %========插图
 \RequirePackage{graphicx}
-\RequirePackage{subfigure}
-\RequirePackage{float}%控制图片位置
+\RequirePackage{subfigure} %子图
+%\RequirePackage{float}
 %========三线表
 \RequirePackage{booktabs}
 %========对表格列格式的扩展
@@ -55,15 +55,16 @@
 \RequirePackage{titlesec}
 %========支持在单元格里排版多行内容（嵌套一个单列的小表格）
 \RequirePackage{makecell}
-\RequirePackage{forloop}
+%\RequirePackage{forloop}
 \RequirePackage{xstring}
 \RequirePackage{enumitem}
+%========定理环境
 \RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
 %========algorithmic实现算法排序的宏包，如果要生成浮动体的话，需要搭配algorithm宏包使用
 \RequirePackage{algorithm}
 \RequirePackage{algorithmic}
 \RequirePackage{ifthen}
-\RequirePackage[unicode,psdextra]{hyperref}%Required for hyperlinks
+\RequirePackage[unicode,psdextra]{hyperref}
 %cleveref必须在hyperref宏包加载之后
 \RequirePackage[nameinlink]{cleveref}
 
