@@ -5,187 +5,199 @@
 
 %---------- cls文件声明 ----------
 \ProvidesClass{QHUthesis}[2022/4/19 v1.0.1]
-\NeedsTeXFormat{LaTeX2e} %声明文档类需要依赖于Latex内核
-\AtEndOfPackage{\input{QHU.cfg}} %配置封面相关的带@符号的一些自定义命令
+\NeedsTeXFormat{LaTeX2e}
 
-% ---------- 调用其他文档类，ctexbook类 ----------
-\LoadClass[a4paper,UTF8,openany,oneside]{ctexbook} %装载其他文档类文件，只允许加载一项
+\newcommand{\class}{本科生毕业设计} %毕业论文
+\renewcommand{\title}{A thesis class for Jinan University} %默认英文标题
+\newcommand{\biaoti}{青海大学本科生论文模板} %默认中文标题
+\newcommand{\xueyuan}{机械工程学院}
+\newcommand{\zhuanye}{机械电子工程}
+\newcommand{\daoshi}{Coffeelze}
+\newcommand{\xingming}{coffeelize}
+\newcommand{\xuehao}{YS210802020148}
+\newcommand{\dateOfGrant}{2021年5月20日}
+\newcommand{\grade}{2020}
 
-%=======论文页边距要求：每一页的左边距为 30 mm，上、下和右边距为 25 mm
-\RequirePackage[top=3cm, bottom=2.5cm, outer=2.5cm, inner=2.5cm, headheight=1.5 cm, footskip=1.75cm, heightrounded]{geometry}
-%======连续参考文献连接起来，排序文献序号（并压缩）
-\RequirePackage[numbers,sort&compress]{natbib}
-%========脚注，使用footmisc自定义脚注命令
-\RequirePackage[perpage, bottom]{footmisc} %每页的脚注单独编号，强制将页脚放置在页面的底部
+\LoadClass[a4paper,UTF8,openany,oneside]{ctexbook}
+\RequirePackage{ctex}
 
-%========常用宏包========
+%%%页边距
+% 每一页的左边距为 30 mm，上、下和右边距为 25 mm
+% 页眉高度1.5cm，页脚高度1.4cm
+% headheight:设置页眉的高度
+% headsep:设置页眉与正文之间的距离
+% footskip:设置页脚的高度
+%%% 页边距
+\RequirePackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm,headheight=1.5cm,footskip=1.4cm]{geometry}
+
+
+%%%
+%常用宏包
+%%%
+
 %========双语标题设置
 \RequirePackage{caption}
 \RequirePackage{bicaption}
 
+%参考文献引用上标格式
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
+\RequirePackage{pifont} %带圈数字，各种符号
+
+
+
 %========数学公式、数学字体，数学符号
 \RequirePackage{amsmath,amsfonts,amssymb}
+
 %========插图
 \RequirePackage{graphicx}
 \RequirePackage{subfigure} %子图
-%\RequirePackage{float}
-%========三线表
+%========表格
 \RequirePackage{booktabs}
-%========对表格列格式的扩展
-\RequirePackage{array}
+\RequirePackage{array} %对表格列格式的扩展
+\RequirePackage{multirow} %合并多行单元格
+\RequirePackage{makecell} %支持在单元格里排版多行内容
 
-%\RequirePackage{ctex}
-%========设置行距，提供\setstretch，\spacing命令
-\RequirePackage{setspace}
-%========代码高亮
-\RequirePackage{listings}
-%========颜色设置
-\RequirePackage{xcolor}
-%========合并多行单元格
-\RequirePackage{multirow}
-%========定义页眉页脚样式
-\RequirePackage{fancyhdr}
-%========%文档最后一页的页码，通常用于“第1页/共*也”
-\RequirePackage{lastpage}
-%========打补丁，目前还不清楚
+\RequirePackage{setspace} %行距设置
+\RequirePackage{listings} %代码高亮
+\RequirePackage{xcolor} %颜色设置
+
+
+%========工具箱
 \RequirePackage{etoolbox}
-%========控制生成的表格和图片的目录格式
-\RequirePackage[titles,subfigure]{tocloft}
-%========修改章节标题格式
-\RequirePackage{titlesec}
-%========支持在单元格里排版多行内容（嵌套一个单列的小表格）
-\RequirePackage{makecell}
-%\RequirePackage{forloop}
-\RequirePackage{xstring}
-\RequirePackage{enumitem}
-%========定理环境
-\RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
-%========algorithmic实现算法排序的宏包，如果要生成浮动体的话，需要搭配algorithm宏包使用
-\RequirePackage{algorithm}
-\RequirePackage{algorithmic}
-\RequirePackage{ifthen}
 \RequirePackage[unicode,psdextra]{hyperref}
-%cleveref必须在hyperref宏包加载之后
+%cleveref加载在hyperref之后
 \RequirePackage[nameinlink]{cleveref}
 
-%======是否需要插图和图表索引
-\newboolean{PicAndTabIndex}
-\newcommand\newblankpage{\pagestyle{empty}\cleardoublepage\mbox{}}
-%自定义页眉页脚
+
+%========修改章节标题格式
+\RequirePackage{titlesec}
+\RequirePackage{enumitem} %列表
+
+%%%
+%页眉页脚样式
+%%%
+\RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \fancypagestyle{frontmatterstyle}{
 	\fancyhf{}
 	\renewcommand{\headrulewidth}{0pt}
 	\fancyfoot{} 
-	\fancyfoot[C]{\thepage} %
+	\fancyfoot[C]{\thepage}
 	\renewcommand{\thepage}{\Roman{page}}
 }
 \appto\frontmatter{\pagestyle{frontmatterstyle}}
 \ProcessOptions\relax
 
 \fancypagestyle{mainmatterstyle}{
-	%清空页眉页脚
 	\fancyhf{}
-	%设置页眉横线0.4pt
 	\renewcommand{\headrulewidth}{0.4pt}
-	%设置页眉（插入标题）
-	\chead{\@title}
-	%清空页脚
+	\chead{\biaoti}
 	\fancyfoot{} 
-	%页脚插入页码
 	\fancyfoot[C]{\thepage} %
 }
-
 \appto\mainmatter{\pagestyle{mainmatterstyle}}%页面样式
 \appto\mainmatter{\linespread{1.3889}\selectfont}%行距
-   
+
 \fancypagestyle{plain}{
 	\thispagestyle{mainmatterstyle}
 }
 \AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{frontmatterstyle}}}
 
-%=======修改章节样式，章节编号后添加小数点
+
+%%%
+% 章节样式，章节编号后添加小数点
+%%%
 \newcommand\prechaptername{ }
 \newcommand\postchaptername{.}
 
-%=======通过tocloft宏包来修改目录样式=======
-%%\CTEXsetup[name={第,章},number={\arabic{chapter}}]{chapter}%改变目录标题样式
-%章节标题设置：  name：在章节前后插入文本；number：章节编号的数字样式
-%\CTEXsetup[name={,.},number={\arabic{chapter}}]{chapter}%改变目录标题样式
-%\CTEXsetup[name={,},number={\arabic{chapter}}]{chapter}%改变目录标题样式
-\CTEXsetup[name={,},number={\arabic{chapter}}]{chapter}
-\renewcommand\cftchapdotsep{2}%虚线间隔
-\renewcommand{\cftdot}{$\cdot$}
-\renewcommand{\cftdotsep}{1.5}%设置点间距
-\renewcommand{\cftchapafterpnum}{\vspace{2pt}}%设置chapter章节后间距
+%%%
+%=======目录样式=======
+%%%
+
+% 设置目录深度
+\setcounter{secnumdepth}{3}
+\setlength{\parindent}{2em}
+
+%name：在章节前后插入文本；number：章节编号的数字样式
+\CTEXsetup[name={,},number={\arabic{chapter}}]{chapter} 
+
+%========控制生成的表格和图片的目录格式
+\RequirePackage[titles,subfigure]{tocloft}
+%\renewcommand{\cftdot}{$\cdot$} %中间点
+\renewcommand{\cftdotsep}{0.5} %设置点间距
+\renewcommand{\cftchapafterpnum}{\vspace{2pt}} %设置chapter章节后间距
 \renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}%设置章节标题与页码之间的导引符
-\renewcommand{\cftchapdotsep}{\cftdotsep}
-\setlength{\cftbeforechapskip}{0pt}%一级标题章节间隔
-\setlength{\cftbeforesecskip}{0pt}%二级标题章节间隔
-\setlength{\cftbeforesubsecskip}{0pt}%三级标题间隔
+\renewcommand{\cftsecleader}{\cftdotfill{\cftchapdotsep}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftchapdotsep}}
+\renewcommand{\cftchapdotsep}{\cftdotsep} 
+
+\setlength{\cftbeforechapskip}{0pt} %一级标题章节间隔
+\setlength{\cftbeforesecskip}{0pt} %二级标题章节间隔
+\setlength{\cftbeforesubsecskip}{0pt} %三级标题间隔
+
 %目录章标题字体样式
 \renewcommand\cftchapfont{\songti\zihao{4}}
 \renewcommand\cftsecfont{\songti\zihao{4}}
 \renewcommand\cftsubsecfont{\songti\zihao{4}}
 \renewcommand\cftchappagefont{\mdseries}
-%设置目录深度
-\setcounter{secnumdepth}{3}
-\setlength{\parindent}{2em}
-%%调整“目录”的段前段后间距
-%\setlength\cftbeforetoctitleskip{0pt}
-%\setlength\cftaftertoctitleskip{0pt}
-%%%%%%%%%% 章节字体、字号和间距设置 %%%%%%%%%%%%%%%%%
-%=======1级标题为三号，加粗，居中，段后1行,
-%=======2级标题为四号，加粗；段前 0.5 行，段后 0.5 行
-%=======3级标题小四号
-%=======4级标题及以下同3级标题
+
+%%%
+% 章节字体、字号和间距设置
+%1级标题为三号，加粗，居中，段后1行,
+%2级标题为四号，加粗；段前 0.5 行，段后 0.5 行
+%3级标题小四号
+%4级标题(1)，4级标题及以下字号同3级标题
+%5级标题①，LaTeX中没有那么小的标题...
+%%%
+
+
 \renewcommand{\chaptername}{\prechaptername\arabic{chapter}\postchaptername}
-\titleformat{\chapter}{\centering\bfseries\zihao{3}\songti}{\chaptername}{0.5em}{} %一级标题
+\titleformat{\chapter}{\centering\bfseries\zihao{3}\songti}{\chaptername}{0.5em}{} %章节标题
 \titlespacing{\chapter}{0pt}{0pt}{16pt}
-\titleformat{\section}{\bfseries\zihao{4}\songti}{\thesection}{0.5em}{}
+\titleformat{\section}{\bfseries\zihao{4}\songti}{\thesection}{0.5em}{} %一级标题
 \titlespacing{\section}{0pt}{7pt}{7pt}
-\titleformat{\subsection}{\zihao{-4}\songti}{\thesubsection}{0.5em}{}
+\titleformat{\subsection}{\zihao{-4}\songti}{\thesubsection}{0.5em}{} %二级标题
 \titlespacing{\subsection}{0pt}{0pt}{0pt}
-\titleformat{\subsubsection}{\zihao{-4}\songti}{\thesubsubsection}{0.5em}{}
-\titlespacing{\subsubsection}{0pt}{0pt}{0pt}
+%%%
+% 定制三级标题样式
+%%%
+\RequirePackage{regexpatch}
+\newcommand{\subsubsectionnum}{\arabic{subsubsection}}
+\xpatchcmd*{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}{(\arabic{subsubsection})}{}{}
+\titleformat{\subsubsection}
+{\zihao{-4}\songti}{(\subsubsectionnum)}{0.5em}{}
 
-%%=======标题页信息
-\newtoks\college%院系
-\newtoks\serialnumber%学号
-\newtoks\major%专业
-\newtoks\advisor%指导老师
-\newtoks\entitle%英文标题
-\newtoks\cptdate%完成日期
-\newtoks\stryear%年级
-
-%%=======标题页
-%需要添加循环函数，判定多于一行的情况
+%%% 定义增强下划线
 \def\QHU@underline[#1]#2{%
 	\underline{\hbox to #1{\hfill#2\hfill}}}
 \def\QHUunderline{\@ifnextchar[\QHU@underline\underline}
-\renewcommand\maketitle{
+
+%%%
+% 封面
+%%%
+\renewcommand{\titlepage}{
 	%封面样式
 	\thispagestyle{empty}
 	\begin{center}
-%		\vspace{0.1cm}%设置垂直间距
-		\includegraphics[width=7.43cm]{QHU.bmp}\\%插入青大图标logo
-		\vspace{1.2cm}%设置垂直间距(本科生毕业设计上间距)
-		{\songti\zihao{1}\QHU@label@thesis\\}%
+		\includegraphics[width=7.43cm]{QHU.bmp}\\
+		\vspace{1.2cm}
+		{\songti\zihao{1}\class \\}%
 		\vspace{2.5cm}
 		\zihao{4}
-		\vspace{0.25cm}%设置垂直间距(中文标题上间距)
-		{\bf\songti\zihao{3}\@title} \\[0.40cm]
-		{\fontspec{Times New Roman}\bf\zihao{3}\the\entitle} \\[0.40cm]
+		\vspace{0.25cm}
+		% 中英文标题
+		{\bf\songti\zihao{3}\biaoti} \\[0.40cm]
+		{\bf\zihao{3}\title} \\[0.40cm]
 		\def\tabcolsep{6pt}
 		\expandarg
 		\newcounter{title_str_number}
 		\vspace*{72pt}
 		\begin{tabular}{rl}%标题右对齐，内容左对齐
-			{\songti \QHU@label@college} & {\QHUunderline[258pt]{\songti\zihao{-3}\the\college}} \\[0.7cm]%院系
-			{\songti \QHU@label@major} & {\QHUunderline[160pt]{\songti\zihao{-3}\the\major}}{\songti \QHU@label@stryear}{\QHUunderline[60pt]{\songti\zihao{-3}\the\stryear}}\\[0.7cm]%专业+年级
-			{\songti \QHU@label@author} & {\QHUunderline[122pt]{\songti\zihao{-3}\@author}}{\songti \QHU@label@serialnumber}{\QHUunderline[100pt]{\fontspec{Times New Roman}\zihao{-3}\the\serialnumber}}\\[0.7cm]%姓名+学号
-			{\songti \QHU@label@advisor} & {\QHUunderline[258pt]{\songti\zihao{-3}\the\advisor}} \\[0.7cm]%指导老师
-			{\songti \QHU@label@cptdate} & {\QHUunderline[258pt]{\songti\zihao{-3}\the\cptdate}} \\[0.7cm]%完成日期
+			{\songti\zihao{-3} 院\quad \quad 系} & {\QHUunderline[258pt]{\songti\zihao{-3} \xueyuan}} \\[0.7cm]%院系
+			{\songti\zihao{-3} 专\quad \quad 业} & {\QHUunderline[160pt]{\songti\zihao{-3}\zhuanye}}{\songti 年级}{\QHUunderline[68pt]{\songti\zihao{-3}\grade}}\\[0.7cm]
+			{\songti\zihao{-3} 学生姓名} & {\QHUunderline[122pt]{\songti\zihao{-3}\xingming}}{\songti 学号}{\QHUunderline[105pt]{\zihao{-3} \xuehao}}\\[0.7cm]%姓名+学号
+			{\songti\zihao{-3} 指导老师} & {\QHUunderline[258pt]{\songti\zihao{-3}\daoshi}} \\[0.7cm]%指导老师
+			{\songti\zihao{-3} 完成日期} & {\QHUunderline[258pt]{\songti\zihao{-3}\dateOfGrant}} \\[0.7cm]%完成日期
 		\end{tabular}
 		\par
 		\vspace{70pt}
@@ -193,38 +205,61 @@
 	\clearpage
 }
 
-%=======中文摘要页
-\newcommand{\ZhAbstract}[2]{
-	%解决目录链接跳转页面错误问题
-	\phantomsection
-	\addcontentsline{toc}{chapter}{摘要}
-	\thispagestyle{mainmatterstyle}
-	\begin{center}%
-		\begin{minipage}{\textwidth}
-			\centering
-			\heiti\zihao{3}\noindent{摘要}%中文摘要
-		\end{minipage}
-	\end{center}%
-	\par \songti\zihao{-4}#1
-	\vspace{10pt}
-	\par \noindent\heiti\zihao{4}{关键词：}\songti\zihao{-4}#2
-	\newpage
+%%%
+%
+% 中文摘要
+%
+%%%
+
+\newenvironment{zhAbsract}[1]{%
+	\addcontentsline{toc}{chapter}{摘\quad 要}
+	\def \zhKeyword{#1}
+	\clearpage
+	\begin{center}
+		{\heiti \zihao{3} 摘 \quad 要} 
+	\end{center}
+	\vspace*{1em}
+	\songti\zihao{-4}\setlength{\parindent}{2em}
+	
+}
+{ %结束部分定义
+	\par \noindent {\songti\zihao{-4}\textbf{关键词：}} \zhKeyword
 }
 
-%=======英文摘要页
-\newcommand{\EnAbstract}[2]{
-	\phantomsection
-	\addcontentsline{toc}{chapter}{Abstract}
-	\thispagestyle{mainmatterstyle}
-	\begin{center}%
-		\begin{minipage}{\textwidth}
-			\centering
-			\fontspec{Times New Roman}\zihao{3}\noindent{Abstract}%英文标题
-		\end{minipage}
-	\end{center}%
-	\par \fontspec{Times New Roman}\zihao{-4} #1
-	\vspace{10pt}
-	\par \noindent\fontspec{Times New Roman}\zihao{4}\text{Key words: } \fontspec{Times New Roman}\zihao{-4} #2
+%%%
+%
+% 英文摘要
+%
+%%%
+
+\newenvironment{enAbsract}[1]{%
+	\def \enKeyword{#1}
+	\clearpage
+	\fancyhf{}
+	\addcontentsline{toc}{chapter}{ABSTRACT}
+	\begin{center}
+		{\zihao{3}\textbf{ABSTRACT}}
+	\end{center}
+	\vspace*{1em}
+	\zihao{-4}\setlength{\parindent}{2em}
+	
+}
+{ %结束部分定义
+	\par \noindent {\zihao{-4}\textbf{Key words:}} \enKeyword
+}
+
+\newcommand{\statement}{%
+	\begin{center}
+		\songti\zihao{3}诚信责任书
+	\end{center}
+	\vspace{1.5cm}
+	\begin{spacing}{1.885}
+		\songti\zihao{4}本人郑重声明：本人所呈交的毕业论文（设计），是在导师的指导下独立进行研究所取得的成果。毕业论文（设计）中凡引用他人已经发表或未发表的成果、数据、观点等，均已明确注明出处。除文中已经注明引用的内容外，不包含任何其他个人或集体已经发表或在网上发表的论文。
+		
+		特此声明。
+	\end{spacing}
+	\vspace{3cm}
+	\songti\zihao{4}论文作者签名：\QHUunderline[60pt]{} \hfill 日期：\QHUunderline[120pt]{}
 }
 
 
@@ -233,27 +268,34 @@
 	\setcounter{section}{0}
 	\renewcommand{\thechapter}{A}
 	%将附录添加到目录中
-	\addcontentsline{toc}{chapter}{附录}
-	\chapter*{附录}
+	\addcontentsline{toc}{chapter}{附\quad 录}
+	\chapter*{附\quad 录}
 	\zihao{4}\songti
 }
-%=======致谢页
+%=======致谢
 \newcommand{\Thanks}{
 	%将致谢添加到目录中
-	\addcontentsline{toc}{chapter}{致谢}
-	\chapter*{致谢}
+	\addcontentsline{toc}{chapter}{致\quad 谢}
+	\chapter*{致\quad 谢}
 	\zihao{4}\songti
 }
-%========超链接========
-\hypersetup{hidelinks,breaklinks=true,bookmarksopen=false}%自动写入pdf信息
+
+
+%%%
+%超链接
+%%%
+\RequirePackage[unicode,psdextra]{hyperref}
+\hypersetup{hidelinks,breaklinks=true,bookmarksopen=false}
+%自动写入pdf信息
 \AtBeginDocument{
 	\hypersetup{
-		%生成PDF属性信息
 		pdftitle = {\@title},
 		pdfauthor = {\@author},
 		pdfsubject = {青海大学本科毕业论文}
 	}
 }
+
+
 \crefformat{equation}{#2式(#1)#3}
 \crefformat{figure}{#2图#1#3}
 \crefformat{table}{#2表#1#3}
@@ -262,28 +304,11 @@
 \crefformat{subsection}{#2#1小节#3}
 \crefformat{subsubsection}{#2#1小节#3}
 
-%=====列表样式
-\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
-\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
-\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
-
 %======英文名称改为汉字
-\theorembodyfont{\rmfamily\songti}
-\theoremheaderfont{\rmfamily\heiti}
-\theoremsymbol{\ensuremath{\square}}
-\newtheorem*{proof}{证明}
-\theoremstyle{plain}
-\theoremsymbol{}
-\qedsymbol{\ensuremath{\square}}
-\newtheorem{assumption}{假设}[chapter]
-\newtheorem{definition}{定义}[chapter]
-\newtheorem{proposition}{命题}[chapter]
-\newtheorem{lemma}{引理}[chapter]
-\newtheorem{theorem}{定理}[chapter]
-\newtheorem{axiom}{公理}[chapter]
-\newtheorem{corollary}{推论}[chapter]
-\newtheorem{example}{例}[chapter]
-\newtheorem{conjecture}{猜想}[chapter]
+
+%%%
+% 交叉引用
+%%%
 \crefname{theorem}{定理}{定理}
 \crefname{assumption}{假设}{假设}
 \crefname{definition}{定义}{定义}
@@ -295,16 +320,15 @@
 \crefname{example}{例}{例}
 \crefname{remark}{注释}{注释}
 \crefname{conjecture}{猜想}{猜想}
-%=======程序伪代码实现
-\floatname{algorithm}{算法}
-\renewcommand{\algorithmicrequire}{\textbf{输入:}}
-\renewcommand{\algorithmicensure}{\textbf{输出:}}
-%=======改变图表的编号格式
+
+%%%
+% 图表编号
+%%% 
 \captionsetup[table]{labelsep=space}%{labelsep=quad}
 \captionsetup[figure]{labelsep=space}
 \renewcommand{\tablename}{表} %表题头
 \renewcommand{\figurename}{图} %图题头
-\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}} %使图编号为7.1的格式 %\protect{~}
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}} %使图编号为7.1的格式 
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}%使表编号为7.1的格式
 \renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}%使公式编号为7.1的格式
 \renewcommand{\thesubfigure}{(\alph{subfigure})}%使子图编号为(a)的格式
@@ -318,14 +342,12 @@
 	\renewcommand{\figurename}{附图}
 	\renewcommand{\tablename}{附表}}
 
-%%=======参考文献
-\newtoks\bibdatabase
-\newcommand{\printbib}{
-	\songti\zihao{4}
-	\bibliographystyle{QHUbib}
-	\addcontentsline{toc}{chapter}{参考文献}
-	\bibliography{\the\bibdatabase}
-}
-\endinput
+%%%
+%参考文献
+%%%
+\RequirePackage{natbib}
+\setlength{\bibsep}{0pt} %参考文献间距
+%\renewcommand{\bibfont}{\small} %参考文献字号
+
 
 %% End of file `QHUthesis.cls'.
