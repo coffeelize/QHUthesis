@@ -18,15 +18,9 @@
 \renewcommand{\xingming}{coffeelize}
 \renewcommand{\xuehao}{1700417035}
 \renewcommand{\grade}{2017级}
-\renewcommand{\daoshi}{Coffeelze}
+\renewcommand{\daoshi}{Coffeelize}
 \renewcommand{\dateOfGrant}{2021年5月20日}
 \renewcommand{\class}{本科生毕业论文} %毕业论文or毕业设计
-	
-
-\frontmatter
-
-%	\captionsetup[figure][bi-second]{name=Fig} %设置图的英文编号前缀
-%	\captionsetup[table][bi-second]{name=Table} %设置表的英文编号前缀
 
 %%======生成封面
 \titlepage
@@ -41,6 +35,8 @@
 \thispagestyle{empty} 
 \tableofcontents
 \thispagestyle {empty}
+
+\frontmatter
 
 %======文章主体
 \mainmatter %开启章节序号计数，重置页码，页码使用阿拉伯数字;
@@ -184,27 +180,50 @@
 \zhlipsum[1-5]
 
 \chapter{章节标题}
-
 \section{一级节标题}
-
 \subsection{二级节标题}
-
+\subsection{二级节标题}
 \subsubsection{三级节标题}
-
+\subsubsection{三级节标题}
+\section{一级节标题}
+\subsection{二级节标题}
+\subsection{二级节标题}
+\subsubsection{三级节标题}
+\subsubsection{三级节标题}
+\section{一级节标题}
+\subsection{二级节标题}
+\subsection{二级节标题}
+\subsubsection{三级节标题}
+\subsubsection{三级节标题}
+\section{一级节标题}
+\subsection{二级节标题}
+\subsection{二级节标题}
+\subsubsection{三级节标题}
+\subsubsection{三级节标题}
+\paragraph{段落标题}
 \paragraph{段落标题}
 
+\chapter{章节标题}
 \zhlipsum[1]
-
+\section{一级节标题}
+\zhlipsum[1]
+\subsection{二级节标题}
+\zhlipsum[1]
+\subsubsection{三级节标题}
+\zhlipsum[1]
+\paragraph{段落标题}
+\zhlipsum[1]
 \subparagraph{子段落标题}
 \zhlipsum[1]
+
+
 
 %=======论文后部=======
 \backmatter
 %=======参考文献
+\bibliography{reference} 
+\addcontentsline{toc}{chapter}{参考文献}
 
-\bibliography{references/reference} 
-%\bibdatabase{references/reference}
-%\printbib%打印参考书目
 
 %%% 致谢
 \Thanks

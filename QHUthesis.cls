@@ -4,7 +4,7 @@
 %   This template for QingHai university undergraduate thesis
 
 %---------- cls文件声明 ----------
-\ProvidesClass{QHUthesis}[2022/4/19 v1.0.1]
+\ProvidesClass{QHUthesis}[2023/5/19 v2.0]
 \NeedsTeXFormat{LaTeX2e}
 
 \newcommand{\class}{本科生毕业设计} %毕业论文
@@ -38,11 +38,12 @@
 %========双语标题设置
 \RequirePackage{caption}
 \RequirePackage{bicaption}
+\captionsetup[figure][bi-second]{name=Fig} %设置图的英文编号前缀
+\captionsetup[table][bi-second]{name=Table} %设置表的英文编号前缀
 
 %参考文献引用上标格式
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 \RequirePackage{pifont} %带圈数字，各种符号
-
 
 
 %========数学公式、数学字体，数学符号
@@ -82,8 +83,8 @@
 	\fancyhf{}
 	\renewcommand{\headrulewidth}{0pt}
 	\fancyfoot{} 
-	\fancyfoot[C]{\thepage}
-	\renewcommand{\thepage}{\Roman{page}}
+%	\fancyfoot[C]{\thepage}
+%	\renewcommand{\thepage}{\Roman{page}}
 }
 \appto\frontmatter{\pagestyle{frontmatterstyle}}
 \ProcessOptions\relax
@@ -122,6 +123,7 @@
 \CTEXsetup[name={,},number={\arabic{chapter}}]{chapter} 
 
 %========控制生成的表格和图片的目录格式
+\renewcommand{\contentsname}{\heiti\zihao{3} 目\quad 录} %设置目录两个字体字号
 \RequirePackage[titles,subfigure]{tocloft}
 %\renewcommand{\cftdot}{$\cdot$} %中间点
 \renewcommand{\cftdotsep}{0.5} %设置点间距
@@ -159,7 +161,7 @@
 \titleformat{\subsection}{\zihao{-4}\songti}{\thesubsection}{0.5em}{} %二级标题
 \titlespacing{\subsection}{0pt}{0pt}{0pt}
 %%%
-% 定制三级标题样式
+% 定制三级标题样式，标题格式为(1)、(2)...
 %%%
 \RequirePackage{regexpatch}
 \newcommand{\subsubsectionnum}{\arabic{subsubsection}}

@@ -9,10 +9,10 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Database file #1: references/reference.bib
+Database file #1: reference.bib
 You've used 2 entries,
             5246 wiz_defined-function locations,
-            1024 strings with 7756 characters,
+            1024 strings with 7745 characters,
 and the built_in function-call counts, 10285 in all, are:
 = -- 372
 > -- 1004
