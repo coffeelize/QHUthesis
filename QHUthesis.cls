@@ -20,6 +20,9 @@
 
 \LoadClass[a4paper,UTF8,openany,oneside]{ctexbook}
 \RequirePackage{ctex}
+%\RequirePackage{xeCJK}
+%\setCJKmainfont[AutoFakeBold=1.3, ItalicFont={KaiTi}]{FangSong} %仿宋伪粗体，并使用\fangsong命令
+%\renewcommand{\fangsong}{\rmfamily}
 
 %%%页边距
 % 每一页的左边距为 30 mm，上、下和右边距为 25 mm
@@ -45,6 +48,13 @@
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 \RequirePackage{pifont} %带圈数字，各种符号
 
+%%%
+% \uline粗下划线
+%\dotuline点下划线
+%\dashuline虚线下划线
+%% %
+\RequirePackage{ulem} %加粗下划线
+\renewcommand{\ULthickness}{1.2pt} % 设置下划线粗细
 
 %========数学公式、数学字体，数学符号
 \RequirePackage{amsmath,amsfonts,amssymb}
@@ -123,7 +133,7 @@
 \CTEXsetup[name={,},number={\arabic{chapter}}]{chapter} 
 
 %========控制生成的表格和图片的目录格式
-\renewcommand{\contentsname}{\heiti\zihao{3} 目\quad 录} %设置目录两个字体字号
+\renewcommand{\contentsname}{\zihao{3} 目\quad 录} %设置目录两个字体字号
 \RequirePackage[titles,subfigure]{tocloft}
 %\renewcommand{\cftdot}{$\cdot$} %中间点
 \renewcommand{\cftdotsep}{0.5} %设置点间距
@@ -171,7 +181,7 @@
 
 %%% 定义增强下划线
 \def\QHU@underline[#1]#2{%
-	\underline{\hbox to #1{\hfill#2\hfill}}}
+	\uline{\hbox to #1{\hfill#2\hfill}}}
 \def\QHUunderline{\@ifnextchar[\QHU@underline\underline}
 
 %%%
@@ -183,7 +193,7 @@
 	\begin{center}
 		\includegraphics[width=7.43cm]{QHU.bmp}\\
 		\vspace{1.2cm}
-		{\songti\zihao{1}\class \\}%
+		{\songti\zihao{1}\textbf{\class} \\}%
 		\vspace{2.5cm}
 		\zihao{4}
 		\vspace{0.25cm}
@@ -195,11 +205,11 @@
 		\newcounter{title_str_number}
 		\vspace*{72pt}
 		\begin{tabular}{rl}%标题右对齐，内容左对齐
-			{\songti\zihao{-3} 院\quad \quad 系} & {\QHUunderline[258pt]{\songti\zihao{-3} \xueyuan}} \\[0.7cm]%院系
-			{\songti\zihao{-3} 专\quad \quad 业} & {\QHUunderline[160pt]{\songti\zihao{-3}\zhuanye}}{\songti 年级}{\QHUunderline[68pt]{\songti\zihao{-3}\grade}}\\[0.7cm]
-			{\songti\zihao{-3} 学生姓名} & {\QHUunderline[122pt]{\songti\zihao{-3}\xingming}}{\songti 学号}{\QHUunderline[105pt]{\zihao{-3} \xuehao}}\\[0.7cm]%姓名+学号
-			{\songti\zihao{-3} 指导老师} & {\QHUunderline[258pt]{\songti\zihao{-3}\daoshi}} \\[0.7cm]%指导老师
-			{\songti\zihao{-3} 完成日期} & {\QHUunderline[258pt]{\songti\zihao{-3}\dateOfGrant}} \\[0.7cm]%完成日期
+			{\songti\zihao{-3} \textbf{院\quad \quad 系}} & {\QHUunderline[258pt]{\songti\zihao{-3} \textbf{\xueyuan}}} \\[0.7cm]%院系
+			{\songti\zihao{-3} \textbf{专\quad \quad 业}} & {\QHUunderline[122pt]{\songti\zihao{-3}\textbf{\zhuanye}}}{\songti \textbf{年级}}{\QHUunderline[105pt]{\songti\zihao{-3}\textbf{\grade}}}\\[0.7cm]
+			{\songti\zihao{-3} \textbf{学生姓名}} & {\QHUunderline[122pt]{\songti\zihao{-3}\textbf{\xingming}}}{\songti \textbf{学号}}{\QHUunderline[105pt]{\zihao{-3} \textbf{\xuehao}}}\\[0.7cm]%姓名+学号
+			{\songti\zihao{-3} \textbf{指导老师}} & {\QHUunderline[258pt]{\songti\zihao{-3}\textbf{\daoshi}}} \\[0.7cm]%指导老师
+			{\songti\zihao{-3} \textbf{完成日期}} & {\QHUunderline[258pt]{\songti\zihao{-3}\textbf{\dateOfGrant}}} \\[0.7cm]%完成日期
 		\end{tabular}
 		\par
 		\vspace{70pt}
@@ -218,14 +228,15 @@
 	\def \zhKeyword{#1}
 	\clearpage
 	\begin{center}
-		{\heiti \zihao{3} 摘 \quad 要} 
+		{\zihao{3} \textbf{摘 \quad 要}} 
 	\end{center}
 	\vspace*{1em}
 	\songti\zihao{-4}\setlength{\parindent}{2em}
 	
 }
 { %结束部分定义
-	\par \noindent {\songti\zihao{-4}\textbf{关键词：}} \zhKeyword
+	\vspace*{0.5em}
+	\par {\songti\zihao{-4}\textbf{关键词：}} \zhKeyword
 }
 
 %%%
@@ -247,7 +258,8 @@
 	
 }
 { %结束部分定义
-	\par \noindent {\zihao{-4}\textbf{Key words:}} \enKeyword
+	\vspace*{0.5em}
+	\par  {\zihao{-4}\textbf{Key words:}} \enKeyword
 }
 
 \newcommand{\statement}{%
@@ -272,14 +284,14 @@
 	%将附录添加到目录中
 	\addcontentsline{toc}{chapter}{附\quad 录}
 	\chapter*{附\quad 录}
-	\zihao{4}\songti
+	\songti\zihao{-4}
 }
 %=======致谢
 \newcommand{\Thanks}{
 	%将致谢添加到目录中
 	\addcontentsline{toc}{chapter}{致\quad 谢}
 	\chapter*{致\quad 谢}
-	\zihao{4}\songti
+	\songti\zihao{-4}
 }
 
 
