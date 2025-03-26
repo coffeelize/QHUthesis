@@ -5,8 +5,15 @@ For Qinghai University undergraduate
 
 ---
 
-v1.0.4
+2025/03/26
 
+Overleaf上编译（注意项目使用XeLaTeX编译），可参考测试项目：https://www.overleaf.com/read/bfktftjdzcdn#98c27b
+可参考图文教程：(QHUMaster 使用指南)[https://coffeelize.top/posts/QHUMaster-User's-Guide.html?highlight=qhu]
+可参考截图：
+![Snipaste_2025-03-26_17-14-45.png](https://s2.loli.net/2025/03/26/icb9XR16EKp7zNr.png)
+![Snipaste_2025-03-26_17-14-23.png](https://s2.loli.net/2025/03/26/pJmFKbr6RWokAen.png)
+
+希望学弟学妹们（1）遇到问题可先问GPT等大模型；（2）积极维护项目，遇到的问题可提Issues，**共同参与进来**
 
 
 V1.0.3 --- 2022/04/29
